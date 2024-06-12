@@ -1,6 +1,8 @@
 # Work Tools
 This application was made to allow for automation throughout my daily job. Automates small tasks that need to be done several times throughout the course of a single day. 
 
+<img src="https://github.com/dnbroo/work_tools/raw/main/images/tools_image" width="150">
+
 ## Features
 
 &nbsp;&nbsp;✅ **Custom Link Generation** for login platforms  
@@ -10,8 +12,6 @@ This application was made to allow for automation throughout my daily job. Autom
 &nbsp;&nbsp;✅ Plan Of Action setter with **automatic date configuration**  
 &nbsp;&nbsp;✅ Daily work tracker for keeping track of work completed  
 &nbsp;&nbsp;✅ **Hotkey support**  
-  
-image of tool here
 
 ### Custom Link Generation
 Allows us to quickly create custom links for our clients. This feature works because the beginning URL's stay the same. Each school has a special identifier in our system that only needs to be appended to the URL. 
@@ -22,8 +22,12 @@ This feature allows us to set our phone status with the click of a button. Its e
 ### Additional Helper Tool Launching
 On top of this application, I have built a number of other applications that help us comb through rostering data using the `OneRoster` or `SFF` form factor. 
 
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roster Helper
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description here
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roster Helper
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/dnbroo/work_tools/raw/main/images/roster_helper.gif" width="800">  
+#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Features  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✅ Allows for **instantanious** user lookups using large data set CSV values (over 1m+ entries)(BigO(n^2)).  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✅ Allows to grab any class data for a found user.    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✅ Dropped troubleshooting time down from 10-15 minutes to ~30 seconds.    
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jira Helper
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description here
