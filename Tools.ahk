@@ -5,7 +5,16 @@
 ;AHKv2converter creator: github.com/mmikeww/AHK-v2-script-converter
 ;EasyAutoGUI-AHKv2 github.com/samfisherirl/Easy-Auto-GUI-for-AHK-v2
 
-; GLOBAL VARIABLES
+; todo
+; set C and AC functions up
+
+; GLOBAL VARIABLES *
+
+; * I understand global variables are not usually a good idea
+	; in this instance it is a lot more work passing back and forth 
+	; between hotkeys and UI. To follow KISS, I instead made global
+	; variables where it should not be a big deal
+
 ; ====================
 global omni := 0
 
@@ -39,13 +48,13 @@ Constructor()
 	ButtonCustomURL1 := myGui.Add("Button", "x144 y64 w120 h28", "&Custom_URL")
 	DropDownList1 := myGui.Add("DropDownList", "x16 y64 w123 Choose1", ["Ed", "TCT", "HRW"])
 	myGui.Add("GroupBox", "x8 y112 w265 h167", "Set Phone Status")
-	Radio1 := myGui.Add("Radio", "x16 y136 w101 h27", "Ready")
-	Radio2 := myGui.Add("Radio", "x128 y136 w138 h27", "Case Processing")
-	Radio3 := myGui.Add("Radio", "x16 y168 w101 h27", "After Call")
-	Radio4 := myGui.Add("Radio", "x128 y168 w138 h27", "Outbound Call")
-	Radio5 := myGui.Add("Radio", "x16 y200 w101 h27", "Personal")
-	Radio6 := myGui.Add("Radio", "x128 y200 w138 h27", "Break")
-	Radio7 := myGui.Add("Radio", "x16 y232 w101 h27", "Lunch")
+	global Radio1 := myGui.Add("Radio", "x16 y136 w101 h27", "Ready")
+	global Radio2 := myGui.Add("Radio", "x128 y136 w138 h27", "Case Processing")
+	global Radio3 := myGui.Add("Radio", "x16 y168 w101 h27", "After Call")
+	global Radio4 := myGui.Add("Radio", "x128 y168 w138 h27", "Outbound Call")
+	global Radio5 := myGui.Add("Radio", "x16 y200 w101 h27", "Personal")
+	global Radio6 := myGui.Add("Radio", "x128 y200 w138 h27", "Break")
+	global Radio7 := myGui.Add("Radio", "x16 y232 w101 h27", "Lunch")
 	Radio8 := myGui.Add("Radio", "x128 y232 w138 h27", "Meeting")
 	myGui.Add("GroupBox", "x8 y384 w265 h138", "Settings")
 	CheckBox1 := myGui.Add("CheckBox", "x16 y408 w47 h26 +Checked", "C")
@@ -97,10 +106,6 @@ Constructor()
 
 	; gui events
 	myGui.OnEvent('Close', (*) => ExitApp())
-	
-	ToolTipHandler_c(*) {
-		ToolTip "Caffeine"
-	}
 	
 	; value setters
 	OnEventHandler(*) {
@@ -169,10 +174,6 @@ Constructor()
 ; FUNCTIONS
 ; ====================
 
-test_function(*) {
-	MsgBox custom_url_pid
-}
-
 custom_link_creator(*) {
 
 	if(custom_url_pid = ""){
@@ -226,7 +227,6 @@ set_phone() {
 		case phone_status == 7: set_phone_lunch()
 		case phone_status == 8: set_phone_meeting()
 	}
-	return
 }
 
 set_phone_ready() {
@@ -250,12 +250,23 @@ set_phone_case_processing() {
 }
 
 set_phone_after_call() {
-	return
-	;align_avaya()
-	;MouseClick "Left", 140, 69 ;clicks aftercall
-	;CoordMode "Mouse", "Screen"
-	;sleep_time := Random 2000, 60000
-	;Sleep sleep_time
+
+	if (not setting_ac) {
+		return
+	}
+
+	align_avaya()
+	MouseClick "Left", 140, 69 ;clicks aftercall
+	CoordMode "Mouse", "Screen"
+	rand := Random(-60000, 60000)
+	sleep_time := 600000 + rand
+	Sleep sleep_time
+	SoundPlay "ready.wav"
+
+	if(setting_ac) {
+		Radio1.Value := 1
+		set_phone_ready()
+	}
 }
 
 set_phone_outbound_call() {
@@ -273,9 +284,7 @@ set_phone_personal() {
 	phone_aux_menu(7)
 	CoordMode "Mouse", "Screen"
 
-	if(setting_c) {
-		end_c()
-	}
+	end_c()
 }
 
 set_phone_break() {
@@ -283,9 +292,13 @@ set_phone_break() {
 	phone_aux_menu(1)
 	CoordMode "Mouse", "Screen"
 
-	if(setting_c) {
-		end_c()
-	}
+	end_c()
+
+
+	Sleep 900000
+	SoundPlay "break_over.wav"
+	Sleep 5000
+	SoundPlay "break_over.wav"
 }
 
 set_phone_lunch() {
@@ -293,9 +306,15 @@ set_phone_lunch() {
 	phone_aux_menu(2)
 	CoordMode "Mouse", "Screen"
 
-	if(setting_c) {
-		end_c()
-	}
+	end_c()
+
+	
+	Sleep 3600000 ; hour lunch
+	;Sleep, 1800000 ; 30 minute lunch
+	SoundPlay "break_over.wav"
+	Sleep 5000
+	SoundPlay "break_over.wav"
+
 }
 
 set_phone_meeting() {
@@ -347,10 +366,99 @@ run_jira_helper(*) {
 }
 
 run_roster_helper(*) {
-	Run A_ComSpec
-	Sleep 100
-	Send 'python "C:\Users\BrewerD\Documents\AHK\ahk_tools\rosterHelper.py"'
-	Send "{Enter}"
+	Send 'python ' A_ScriptDir "\rosterHelper.py"
+}
+
+set_no_priority_poa(Alt_Key) {
+
+	; gets todays name in a string
+	Date := A_Now
+	current_day_name := FormatTime(Date, "dddd")
+
+	additional_days := 0
+
+	; if its thursday add two addtional days
+	if (current_day_name = "Thursday") {
+		if (no_priority_days_out >= 2){
+			additional_days := 2
+		}
+	}
+
+	; if its friday add one additional day
+	if (current_day_name = "Friday") {
+		if (no_priority_days_out >= 1){
+			additional_days := 1
+		}
+	}
+
+	Date := DateAdd(Date, additional_days, "days")
+	Date := DateAdd(Date, no_priority_days_out, "days")
+
+	set_poa(FormatTime(Date, "ShortDate"), Alt_Key)
+}
+
+set_priority_poa(Alt_Key) {
+
+	; gets todays name in a string
+	Date := A_Now
+	current_day_name := FormatTime(Date, "dddd")
+
+	additional_days := 0
+
+	; if its thursday add two addtional days
+	if (current_day_name = "Thursday") {
+		if (priority_days_out >= 2){
+			additional_days := 2
+		}
+	}
+
+	; if its friday add one addtional day
+	if (current_day_name = "Friday") {
+		if (priority_days_out >= 1){
+			additional_days := 1
+		}
+	}
+
+	; adds our days
+	Date := DateAdd(Date, additional_days, "days")
+	Date := DateAdd(Date, priority_days_out, "days")
+
+	; goes to our macro and sets date
+	set_poa(FormatTime(Date, "ShortDate"), Alt_Key)
+}
+
+set_poa(Date, Alt_Key) {
+
+	if (Alt_Key) {
+		Send "{Tab}"
+		Sleep 50
+		Send "{Tab}"
+		Sleep 50
+	}
+	else {
+		Send "{Tab}"
+		Sleep 50
+		Send "{Tab}"
+		Sleep 50
+		Send "{Tab}"
+		Sleep 50
+	}
+
+	Send Date
+	Sleep 50
+	Send "{Tab}"
+	Sleep 50
+	Send "{Tab}"
+	Sleep 50
+	Send "{Tab}"
+	Sleep 50
+	Send "{Tab}"
+	Sleep 50
+	Send "^a"
+	Send "Awaiting for client response."
+	Send "+{Tab}"
+	Sleep 50
+	Send "^a"
 }
 
 ; HOTKEYS 
@@ -364,4 +472,79 @@ run_roster_helper(*) {
 	global omni
 	omni := omni + 1
 	o_count.Text := omni
+}
+
+^+p:: {
+	; 0 since no alt key was pressed
+	set_no_priority_poa(0)
+}
+
+^+!p:: {
+	; 1 since alt key was pressed
+	set_no_priority_poa(1)
+}
+
+
+^+l:: {
+	; 0 since no alt key was pressed
+	set_priority_poa(0)
+}
+
+^+m:: {
+	run_roster_helper()
+}
+
+^+!l:: {
+	; 1 since alt key was pressed
+	set_priority_poa(1)
+}
+
+; ready
+^F5::{
+	Radio1.Value := 1
+	set_phone_ready()
+}
+
+; case processing
+^F6::{
+	Radio2.Value := 1
+	set_phone_case_processing()
+}
+
+; break
+^F7::{
+	Radio6.Value := 1
+	set_phone_break()	
+}
+
+; lunch
+^F8::{
+	Radio7.Value := 1
+	set_phone_lunch()	
+}
+
+; personal 
+^F9::{
+	Radio5.Value := 1
+	set_phone_personal()
+}
+
+; outbound call
+^F10::{
+	Radio4.Value := 1
+	set_phone_outbound_call()
+}
+
+; aftercall
+^F11::{
+	Radio3.Value := 1
+	set_phone_outbound_call()
+}
+
+^F21::{
+	Run "ControlMyMonitor /SetValue Primary 60 17"
+}
+
+^F22::{
+	Run "ControlMyMonitor /SetValue Primary 60 18"
 }
