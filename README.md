@@ -12,6 +12,7 @@ This application was made to allow for automation throughout my daily job. Autom
 &nbsp;&nbsp;&nbsp;&nbsp;✅ Plan Of Action setter with **automatic date configuration**  
 &nbsp;&nbsp;&nbsp;&nbsp;✅ Daily work tracker for keeping track of work completed  
 &nbsp;&nbsp;&nbsp;&nbsp;✅ **Hotkey support**  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ **Display Input Switcher**  
 
 ### Custom Link Generation
 Allows us to quickly create custom links for our clients. This feature works because the beginning URL's stay the same. Each school has a special identifier in our system that only needs to be appended to the URL. 
@@ -66,3 +67,5 @@ This was built to accustom several working methods including being used with a s
 | Ctrl + F9 | Sets our phone to personal |
 | Ctrl + F10 | Sets our phone to outbound call |
 | Ctrl + F11 | Sets our phone to after call |
+| Ctrl + F21 | Sets input of external monitor to work computer |
+| Ctrl + F22 | Sets input of external monitor to personal computer |
