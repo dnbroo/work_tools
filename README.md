@@ -40,6 +40,8 @@ Let's face it. Developers ask for a lot of information. So much in fact that I i
 &nbsp;&nbsp;&nbsp;&nbsp;✅ Easier readability since the template will be the same 9 times out of 10.     
 &nbsp;&nbsp;&nbsp;&nbsp;✅ Always on top for certain sections that requires us to click through the websites while writing up replication steps.   
 
+#### MouseSpy
+This is a built in AHK tool script that allows you to get detailed information about where the program registers the mouse. This is used to build upon scripts and features. I did not make this part.   
   
 ### Plan of Action Setter with Automatic Date Configuration
 This allows us to *automagically* set Plans of Action (POAs) within Salesforce. The convenient drop down boxes allows us to set how many days out we want it to be. It will automatically set the correct date in business days and account for weekends. 
