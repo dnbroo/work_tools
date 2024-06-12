@@ -3,15 +3,15 @@ This application was made to allow for automation throughout my daily job. Autom
 
 <img src="https://github.com/dnbroo/work_tools/raw/main/images/tools_image" width="150">
 
-## Features
+## &nbsp;&nbsp;Features
 
-&nbsp;&nbsp;✅ **Custom Link Generation** for login platforms  
-&nbsp;&nbsp;✅ Avaya Soft Phone Control  
-&nbsp;&nbsp;✅ **Feedback and Audio** for reminders and alerts  
-&nbsp;&nbsp;✅ Additional Helper Tool Launching  
-&nbsp;&nbsp;✅ Plan Of Action setter with **automatic date configuration**  
-&nbsp;&nbsp;✅ Daily work tracker for keeping track of work completed  
-&nbsp;&nbsp;✅ **Hotkey support**  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ **Custom Link Generation** for login platforms  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Avaya Soft Phone Control  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ **Feedback and Audio** for reminders and alerts  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Additional Helper Tool Launching  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Plan Of Action setter with **automatic date configuration**  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Daily work tracker for keeping track of work completed  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ **Hotkey support**  
 
 ### Custom Link Generation
 Allows us to quickly create custom links for our clients. This feature works because the beginning URL's stay the same. Each school has a special identifier in our system that only needs to be appended to the URL. 
@@ -22,23 +22,33 @@ This feature allows us to set our phone status with the click of a button. Its e
 ### Additional Helper Tool Launching
 On top of this application, I have built a number of other applications that help us comb through rostering data using the `OneRoster` or `SFF` form factor. 
 
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roster Helper
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/dnbroo/work_tools/raw/main/images/roster_helper.gif" width="800">  
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Features  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✅ Allows for **instantanious** user lookups using large data set CSV values (over 1m+ entries)(BigO(n^2)).  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✅ Allows to grab any class data for a found user.    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✅ Dropped troubleshooting time down from 10-15 minutes to ~30 seconds.    
+#### Roster Helper
+<img src="https://github.com/dnbroo/work_tools/raw/main/images/roster_helper.gif" width="800">     
+ 
+We comb through a lot of data while on calls. This can lead to 10-15 minutes of awkward conversation while we attempt to dig through rostering files from large schools and see what potential issues are arrising. Using this tool, we are able to scrape data 1000x more effectively. It can search three different user critera and if it finds a match it will output their information in an easy to read structure. From there you can search a different user or pull connecting class data with the same user.   
 
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jira Helper
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description here
+##### &nbsp;&nbsp;Features  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Allows for **instantanious** user lookups using large data set CSV values (over 1m+ entries processed in under 1 second).  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Allows to grab any class data for a found user.    
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Dropped troubleshooting time down from 10-15 minutes to ~30 seconds.    
+  
+#### Jira Helper
+Let's face it. Developers ask for a lot of information. So much in fact that I implemented this tool to be able to quickly and effeciently gather any necessary information so that we can escalate tickets to our development team for further processing. This also allows for templated submissions which makes it easier for readability and quick information gathering. Using this tool allows us to submit a Jira ticket faster than 60% using conventional methods.
+##### &nbsp;&nbsp;Features  
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Quick and Effecient write ups for development.   
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Easier readability since the template will be the same 9 times out of 10.     
+&nbsp;&nbsp;&nbsp;&nbsp;✅ Always on top for certain sections that requires us to click through the websites while writing up replication steps.   
 
+  
 ### Plan of Action Setter with Automatic Date Configuration
 This allows us to *automagically* set Plans of Action (POAs) within Salesforce. The convenient drop down boxes allows us to set how many days out we want it to be. It will automatically set the correct date in business days and account for weekends. 
-> Note: Currently only weekends are supported. Holidays and scheduled times off are not accounted for.
-
+> &nbsp;&nbsp;Note: Currently only weekends are supported. Holidays and scheduled times off are not accounted for.
+  
+  
 ### A Built in work tracker that keeps track of work completed for the day
-No more are the days of pieces of paper and pencils with tally marks scattered randomly in a convenient spot. No more will you have to worry if you've grabbed 6 or 8 cases for the day. Using this tracker you can use a simple hotkey to add +1 to the tracker so that you can rest assured knowing that your case history is conveniently stored in a safe place. 
+No more are the days of pieces of paper and pencils with tally marks scattered randomly in a convenient spot. No more will you have to worry if you've grabbed 6 or 8 cases for the day. Using this tracker you can use a simple hotkey to add +1 to the tracker so that you can rest assured knowing that your case history is conveniently stored in a safe place.   
 
+  
 ### Hotkey Support
 This was built to accustom several working methods including being used with a steam deck or even with a laptop on the go. The hotkeys allow you to control the application globally with a simple key press.
 | Key | Function |
