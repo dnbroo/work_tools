@@ -3,14 +3,14 @@ This application was made to allow for automation throughout my daily job. Autom
 
 ## Features
 
-&nbsp;&nbsp;✅ **Custom Link Generation** for login platforms
-&nbsp;&nbsp;✅  Avaya Soft Phone Control
-&nbsp;&nbsp;✅ **Feedback and Audio** for reminders and alerts
-&nbsp;&nbsp;✅ Additional Helper Tool Launching
-&nbsp;&nbsp;✅ Plan Of Action setter with **automatic date configuration**
-&nbsp;&nbsp;✅ Daily work tracker for keeping track of work completed
-&nbsp;&nbsp;✅ **Hotkey support**
-
+&nbsp;&nbsp;✅ **Custom Link Generation** for login platforms  
+&nbsp;&nbsp;✅ Avaya Soft Phone Control  
+&nbsp;&nbsp;✅ **Feedback and Audio** for reminders and alerts  
+&nbsp;&nbsp;✅ Additional Helper Tool Launching  
+&nbsp;&nbsp;✅ Plan Of Action setter with **automatic date configuration**  
+&nbsp;&nbsp;✅ Daily work tracker for keeping track of work completed  
+&nbsp;&nbsp;✅ **Hotkey support**  
+  
 image of tool here
 
 ### Custom Link Generation
